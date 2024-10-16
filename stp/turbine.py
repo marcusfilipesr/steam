@@ -1,6 +1,5 @@
 import numpy as np
 from scipy.optimize import differential_evolution
-from warnings import warn
 from logging import warning
 
 from . import Q_

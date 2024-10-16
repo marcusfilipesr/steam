@@ -3,7 +3,6 @@ from scipy.optimize import newton
 
 from . import Q_
 from .state import State
-from .config.units import check_units
 
 
 class Point:
