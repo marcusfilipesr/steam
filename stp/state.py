@@ -14,7 +14,7 @@ class State(IAPWS97):
         self.update(**self.setup_args)
 
     def pressure(self, units=None):
-        p = Q_(self.P, "pascal")
+        p = Q_(self.P, "MPa")
         if units:
             p = p.to(units)
         return p
@@ -36,6 +36,18 @@ class State(IAPWS97):
         if units:
             s = s.to(units)
         return s
+    
+    def volume(self, units=None):
+        v = Q_(self.v, "(m ** 3) / kg")
+        if units:
+            v = v.to(units)
+        return v
+    
+    def density(self, units=None):
+        rho = Q_(self.rho, "kg/(m ** 3)")
+        if units:
+            rho = rho.to(units)
+        return rho
 
     def title(self):
         return Q_(self.x, "dimensionless")
