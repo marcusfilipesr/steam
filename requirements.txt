@@ -1,2 +1,2 @@
-IAPWS97
+iapws
 scipy
