@@ -8,7 +8,7 @@ from .state import State
 
 class SteamTurbine:
     
-    coef_list = ["enthalpy_coeff", "volume_ratio", "phi", "steam_rate"]
+    coef_list = ["enthalpy_coeff", "volume_ratio", "phi", "phi_disch"]
 
     def __init__(self, guaranteed, test_point, divergence_limit=None) -> None:
         
@@ -160,7 +160,7 @@ class SteamTurbine:
             f"Inlet:     {point.inlet.pressure().to('bar'):.3f} @ {point.inlet.temperature().to('degC'):.3f}",
             f"Discharge: {point.disch.pressure().to('bar'):.3f} @ {point.disch.temperature().to('degC'):.3f}",
         ]
-        titles = ["Enthalpy Coefficient", "Volume Ratio", "Flow Coefficient"]
+        titles = ["Enthalpy Coefficient", "Volume Ratio", "Flow Coefficient - Inlet", "Flow Coefficient - Discharge"]
         for k, title in enumerate(titles):
             guaranteed_txt = f"Guaranteed:  {getattr(self.guaranteed, self.coef_list[k]).m:.3f}"
             point_txt = f"Test:        {getattr(point, self.coef_list[k]).m:.3f}"
