@@ -36,13 +36,13 @@ class State(IAPWS97):
         if units:
             s = s.to(units)
         return s
-    
+
     def volume(self, units=None):
         v = Q_(self.v, "(m ** 3) / kg")
         if units:
             v = v.to(units)
         return v
-    
+
     def density(self, units=None):
         rho = Q_(self.rho, "kg/(m ** 3)")
         if units:
@@ -58,7 +58,9 @@ class State(IAPWS97):
         elif p is not None and h is not None:
             super().__init__(P=p.to("MPa").magnitude, h=h.to("kJ/kg").magnitude)
         elif p is not None and s is not None:
-            super().__init__(P=p.to("MPa").magnitude, s=s.to("kJ/(kg * degK)").magnitude)
+            super().__init__(
+                P=p.to("MPa").magnitude, s=s.to("kJ/(kg * degK)").magnitude
+            )
         elif p is not None and x is not None:
             super().__init__(P=p.to("MPa").magnitude, x=x.magnitude)
         elif h is not None and s is not None:

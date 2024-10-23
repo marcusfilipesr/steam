@@ -2,6 +2,8 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,visualstudiocode,venv
 
 caso*.txt
+SE.py
+BH.py
 
 ### Python ###
 # Byte-compiled / optimized / DLL files

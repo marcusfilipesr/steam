@@ -6,7 +6,6 @@ from .state import State
 
 
 class Point:
-
     def __init__(
         self,
         inlet=None,
@@ -63,14 +62,16 @@ class Point:
 
         try:
             getattr(self, "_calc_from_" + kwargs_str)()
-        except (AttributeError):
+        except AttributeError:
             func_str = "_calc_from_" + kwargs_str
             missed_params = []
             for k in dir(self):
                 if func_str in k:
-                    missed_params.append(k.replace(func_str,"").replace("_",""))
-            
-            raise Exception(f"One of the following parameters was not passed to the class:\n    {missed_params}")
+                    missed_params.append(k.replace(func_str, "").replace("_", ""))
+
+            raise Exception(
+                f"One of the following parameters was not passed to the class:\n    {missed_params}"
+            )
 
         self.enthalpy_coeff = self.enthalpy_coefficient()
         self.phi = self.calc_phi_inlet(self.speed)
@@ -94,7 +95,8 @@ class Point:
 
         def calc_speed(x):
             new_phi = self.calc_phi_inlet(x)
-            return (self.phi.m - new_phi.m)
+            return self.phi.m - new_phi.m
+
         speed = newton(calc_speed, (self.speed.m) * 0.1)
         self.speed = Q_(speed, self.speed_unit)
 
